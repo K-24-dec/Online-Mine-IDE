@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Online IDE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Connection 1: external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🛠️ Mini Online IDE</h1>
+        <p>Write HTML, CSS & JavaScript — see results instantly</p>
+    </header>
+
+    <div class="editor-grid">
+        <div class="editor-panel">
+            <div class="panel-header">
+                <span class="panel-title"><span class="dot dot-html"></span> HTML</span>
+            </div>
+            <textarea id="htmlCode" placeholder="Write HTML here...">
+<h1>Hello World</h1>
+<p>Click the heading to see magic ✨</p>
+<button id="colorBtn">Change Color</button>
+      </textarea>
+        </div>
+
+        <div class="editor-panel">
+            <div class="panel-header">
+                <span class="panel-title"><span class="dot dot-css"></span> CSS</span>
+            </div>
+            <textarea id="cssCode" placeholder="Write CSS here...">
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+h1 {
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+h1:hover {
+  transform: scale(1.05);
+}
+
+p {
+  opacity: 0.9;
+  margin: 10px 0 20px;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  background: #fff;
+  color: #764ba2;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+      </textarea>
+        </div>
+
+        <div class="editor-panel">
+            <div class="panel-header">
+                <span class="panel-title"><span class="dot dot-js"></span> JavaScript</span>
+            </div>
+            <textarea id="jsCode" placeholder="Write JavaScript here...">
+const h1 = document.querySelector("h1");
+const btn = document.getElementById("colorBtn");
+
+h1.onclick = () => {
+  alert("You clicked the heading! 🎉");
+};
+
+const colors = [
+  "linear-gradient(135deg, #f093fb, #f5576c)",
+  "linear-gradient(135deg, #4facfe, #00f2fe)",
+  "linear-gradient(135deg, #43e97b, #38f9d7)",
+  "linear-gradient(135deg, #fa709a, #fee140)",
+  "linear-gradient(135deg, #667eea, #764ba2)"
+];
+
+let index = 0;
+
+btn.onclick = () => {
+  index = (index + 1) % colors.length;
+  document.body.style.background = colors[index];
+};
+      </textarea>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn-run" onclick="runCode()">▶ Run Code</button>
+        <button class="btn-clear" onclick="clearAll()">🗑️ Clear All</button>
+    </div>
+
+    <div class="output-section">
+        <div class="output-header">
+            <span class="dot dot-output"></span> Output Preview
+        </div>
+        <iframe id="output"></iframe>
+    </div>
+
+    <div class="status-bar">
+        Press <strong>Run Code</strong> or use <strong>Ctrl + Enter</strong> to execute
+    </div>
+
+    <!-- Connection 2: external JS file (loaded after DOM so elements exist) -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
